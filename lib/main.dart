@@ -1017,7 +1017,7 @@ class MyTrendingWebApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ardaita and surrounding association',
+      title: 'ardaita and surrounding charity association',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -1367,7 +1367,7 @@ class _MainLayoutState extends State<MainLayout> {
                   const SizedBox(width: 12),
                   const Expanded(
                     child: Text(
-                      'ardaita and surrounding association',
+                      'ardaita and surrounding charity association',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -1530,7 +1530,7 @@ class _MainLayoutState extends State<MainLayout> {
                 ),
                 if (!isMobile) ...[
                   const SizedBox(width: 10),
-                  const Text('ardaita and surrounding association'),
+                  const Text('ardaita and surrounding charity association'),
                 ],
               ],
             ),
@@ -2166,7 +2166,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 24),
                 const MaxWidthContainer(
                   child: Text(
-                    'ardaita and surrounding association is a community-driven organization dedicated to fostering sustainable progress, equitable education, and accessible healthcare in the Ardaita region.',
+                    'ardaita and surrounding charity association is a community-driven organization dedicated to fostering sustainable progress, equitable education, and accessible healthcare in the Ardaita region.',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 18, height: 1.6),
                   ),
@@ -2245,7 +2245,7 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'ardaita and surrounding association',
+                          'ardaita and surrounding charity association',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -2262,7 +2262,7 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  '© 2026 ardaita and surrounding association. All rights reserved.',
+                  '© 2026 ardaita and surrounding charity association. All rights reserved.',
                   style: TextStyle(color: Colors.white70),
                 ),
                 const SizedBox(height: 8),
@@ -4120,7 +4120,7 @@ class DonatePage extends StatelessWidget {
             child: const Column(
               children: [
                 Text(
-                  'Account Name: ardaita and surrounding association',
+                  'Account Name: ardaita and surrounding charity association',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
