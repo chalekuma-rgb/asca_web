@@ -3678,7 +3678,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                     _buildContactMethod(
                       Icons.phone_rounded,
                       'Call Us',
-                      '+251 911 000 000',
+                      '+251 911 123 000',
                     ),
                   ],
                 ),
