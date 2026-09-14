@@ -1091,6 +1091,8 @@ class MainLayout extends StatefulWidget {
 }
 
 class _MainLayoutState extends State<MainLayout> {
+  static const double _mobileBreakpoint = 900;
+
   int _selectedIndex = 0;
   int? _aboutUsSubTab;
   int? _resourcesSubTab;
@@ -1102,10 +1104,8 @@ class _MainLayoutState extends State<MainLayout> {
   void initState() {
     super.initState();
 
-    // Restore the page represented by the current browser URL.
     _applyPath(html.window.location.pathname ?? '/', addHistory: false);
 
-    // Keep Flutter's content in sync with browser Back/Forward.
     _popStateSubscription = html.window.onPopState.listen((_) {
       if (mounted) {
         _applyPath(html.window.location.pathname ?? '/', addHistory: false);
@@ -1321,51 +1321,245 @@ class _MainLayoutState extends State<MainLayout> {
     );
   }
 
+  Widget _buildMobileNavTile({
+    required String title,
+    required IconData icon,
+    required VoidCallback onTap,
+    bool selected = false,
+  }) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        color: selected ? const Color(0xFF2E7D32) : Colors.grey.shade700,
+      ),
+      title: Text(
+        title,
+        style: TextStyle(
+          color: selected ? const Color(0xFF2E7D32) : Colors.black87,
+          fontWeight: selected ? FontWeight.bold : FontWeight.w600,
+        ),
+      ),
+      selected: selected,
+      onTap: onTap,
+    );
+  }
+
+  Widget _buildMobileDrawer() {
+    return Drawer(
+      child: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                children: [
+                  Container(
+                    width: 42,
+                    height: 42,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: const BoxDecoration(shape: BoxShape.circle),
+                    child: Image.asset(
+                      'assets/New_Logo.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  const Expanded(
+                    child: Text(
+                      'Ardaita',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2E7D32),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(),
+            _buildMobileNavTile(
+              title: 'Home',
+              icon: Icons.home_outlined,
+              selected: _selectedIndex == 0,
+              onTap: () {
+                Navigator.of(context).pop();
+                _navigate(0);
+              },
+            ),
+            ExpansionTile(
+              leading: const Icon(Icons.info_outline),
+              title: const Text('About Us'),
+              initiallyExpanded: _selectedIndex == 1,
+              children: [
+                _buildMobileNavTile(
+                  title: 'Who We Are',
+                  icon: Icons.groups_outlined,
+                  selected: _selectedIndex == 1 && (_aboutUsSubTab ?? 0) == 0,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    _navigate(1, 0);
+                  },
+                ),
+                _buildMobileNavTile(
+                  title: 'What We Do',
+                  icon: Icons.lightbulb_outline,
+                  selected: _selectedIndex == 1 && (_aboutUsSubTab ?? 0) == 1,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    _navigate(1, 1);
+                  },
+                ),
+                _buildMobileNavTile(
+                  title: 'Initiatives',
+                  icon: Icons.eco_outlined,
+                  selected: _selectedIndex == 1 && (_aboutUsSubTab ?? 0) == 2,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    _navigate(1, 2);
+                  },
+                ),
+              ],
+            ),
+            ExpansionTile(
+              leading: const Icon(Icons.folder_copy_outlined),
+              title: const Text('Resources'),
+              initiallyExpanded: _selectedIndex == 2,
+              children: [
+                _buildMobileNavTile(
+                  title: 'Documents',
+                  icon: Icons.description_outlined,
+                  selected: _selectedIndex == 2 && (_resourcesSubTab ?? 0) == 0,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    _navigate(2, 0);
+                  },
+                ),
+                _buildMobileNavTile(
+                  title: 'Gallery',
+                  icon: Icons.photo_library_outlined,
+                  selected: _selectedIndex == 2 && (_resourcesSubTab ?? 0) == 1,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    _navigate(2, 1);
+                  },
+                ),
+              ],
+            ),
+            ExpansionTile(
+              leading: const Icon(Icons.volunteer_activism_outlined),
+              title: const Text('Volunteer'),
+              initiallyExpanded: _selectedIndex == 3,
+              children: [
+                _buildMobileNavTile(
+                  title: 'Become a Volunteer',
+                  icon: Icons.handshake_outlined,
+                  selected: _selectedIndex == 3 && (_volunteerSubTab ?? 0) == 0,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    _navigate(3, 0);
+                  },
+                ),
+              ],
+            ),
+            _buildMobileNavTile(
+              title: 'Contact Us',
+              icon: Icons.mail_outline,
+              selected: _selectedIndex == 4,
+              onTap: () {
+                Navigator.of(context).pop();
+                _navigate(4);
+              },
+            ),
+            _buildMobileNavTile(
+              title: 'Donate',
+              icon: Icons.favorite_border,
+              selected: _selectedIndex == 5,
+              onTap: () {
+                Navigator.of(context).pop();
+                _navigate(5);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          width: 50,
-          height: 50,
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: Colors.white.withValues(alpha: 0.8),
-              width: 2,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isMobile = constraints.maxWidth < _mobileBreakpoint;
+
+        return Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            leading: isMobile
+                ? Builder(
+                    builder: (context) => IconButton(
+                      tooltip: 'Open menu',
+                      icon: const Icon(Icons.menu),
+                      onPressed: () => Scaffold.of(context).openDrawer(),
+                    ),
+                  )
+                : null,
+            title: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: isMobile ? 42 : 50,
+                  height: isMobile ? 42 : 50,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.8),
+                      width: 2,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.2),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Image.asset('assets/New_Logo.png', fit: BoxFit.cover),
+                ),
+                if (!isMobile) ...[
+                  const SizedBox(width: 10),
+                  const Text('Ardaita'),
+                ],
+              ],
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.2),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
+            actions: isMobile
+                ? null
+                : [
+                    _buildTopMenuItem(0, 'Home'),
+                    _buildAboutUsMenu(),
+                    _buildResourcesMenu(),
+                    _buildVolunteerMenu(),
+                    _buildTopMenuItem(4, 'Contact Us'),
+                    _buildTopMenuItem(5, 'Donate'),
+                    const SizedBox(width: 20),
+                  ],
+          ),
+          drawer: isMobile ? _buildMobileDrawer() : null,
+          body: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 250),
+            transitionBuilder: (child, animation) =>
+                FadeTransition(opacity: animation, child: child),
+            child: KeyedSubtree(
+              key: ValueKey(
+                '${_selectedIndex}_${_aboutUsSubTab}_${_resourcesSubTab}_$_volunteerSubTab',
               ),
-            ],
+              child: _pages[_selectedIndex],
+            ),
           ),
-          child: Image.asset('assets/New_Logo.png', fit: BoxFit.cover),
-        ),
-        actions: [
-          _buildTopMenuItem(0, 'Home'),
-          _buildAboutUsMenu(),
-          _buildResourcesMenu(),
-          _buildVolunteerMenu(),
-          _buildTopMenuItem(4, 'Contact Us'),
-          _buildTopMenuItem(5, 'Donate'),
-          const SizedBox(width: 20),
-        ],
-      ),
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 250),
-        transitionBuilder: (child, animation) =>
-            FadeTransition(opacity: animation, child: child),
-        child: KeyedSubtree(
-          key: ValueKey(
-            '${_selectedIndex}_${_aboutUsSubTab}_${_resourcesSubTab}_$_volunteerSubTab',
-          ),
-          child: _pages[_selectedIndex],
-        ),
-      ),
+        );
+      },
     );
   }
 }
