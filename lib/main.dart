@@ -4085,8 +4085,10 @@ class DonatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 700;
+
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(48.0),
+      padding: EdgeInsets.all(isMobile ? 16.0 : 48.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -4105,35 +4107,72 @@ class DonatePage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: Colors.green.shade50,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.green.shade200),
-            ),
-            child: const Column(
-              children: [
-                Text(
-                  'Account Name: Ardaita and surrounding charity association',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF2E7D32),
-                  ),
+          Flex(
+            direction: isMobile ? Axis.vertical : Axis.horizontal,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                constraints: const BoxConstraints(maxWidth: 560),
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Colors.green.shade50,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.green.shade200),
                 ),
-                SizedBox(height: 12),
-                Text(
-                  'CBE: 1000758051367',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF2E7D32),
-                  ),
+                child: const Column(
+                  children: [
+                    Text(
+                      'Account Name: Ardaita and surrounding charity association',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF2E7D32),
+                      ),
+                    ),
+                    SizedBox(height: 12),
+                    Text(
+                      'CBE: 1000758051367',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2E7D32),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              SizedBox(width: isMobile ? 0 : 24, height: isMobile ? 24 : 0),
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.green.shade200),
+                ),
+                child: Column(
+                  children: [
+                    const Text(
+                      'Scan to donate',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF2E7D32),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Image.asset(
+                      'assets/donation_qr.png',
+                      width: isMobile ? 180 : 210,
+                      height: isMobile ? 180 : 210,
+                      fit: BoxFit.contain,
+                      semanticLabel: 'Donation QR code',
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 32),
           const Text(
