@@ -1017,7 +1017,7 @@ class MyTrendingWebApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ardaita and its Surrounding Charittable Association',
+      title: 'Ardaita and Surrounding Charity Association',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -1367,7 +1367,7 @@ class _MainLayoutState extends State<MainLayout> {
                   const SizedBox(width: 12),
                   const Expanded(
                     child: Text(
-                      'Ardaita',
+                      'Ardaita and Surrounding Charity Association',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -1530,7 +1530,7 @@ class _MainLayoutState extends State<MainLayout> {
                 ),
                 if (!isMobile) ...[
                   const SizedBox(width: 10),
-                  const Text('Ardaita'),
+                  const Text('Ardaita and Surrounding Charity Association'),
                 ],
               ],
             ),
@@ -2166,7 +2166,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 24),
                 const MaxWidthContainer(
                   child: Text(
-                    'Ardaita and its Surrounding Charittable Association is a community-driven organization dedicated to fostering sustainable progress, equitable education, and accessible healthcare in the Ardaita region.',
+                    'Ardaita and Surrounding Charity Association is a community-driven organization dedicated to fostering sustainable progress, equitable education, and accessible healthcare in the Ardaita region.',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 18, height: 1.6),
                   ),
@@ -2245,7 +2245,7 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Ardaita and its Surrounding Charittable Association',
+                          'Ardaita and Surrounding Charity Association',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -2262,12 +2262,12 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  '© 2026 Ardaita and its Surrounding Charittable Association. All rights reserved.',
+                  '© 2026 Ardaita and Surrounding Charity Association. All rights reserved.',
                   style: TextStyle(color: Colors.white70),
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Ardaita, Ethiopia | info@ardaitaunity.org',
+                  'Ardaita, Ethiopia | info@ardaita-asca.org',
                   style: TextStyle(color: Colors.white54),
                 ),
               ],
@@ -2408,16 +2408,17 @@ class WhoWeAreTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 700;
+
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(48.0),
+      padding: EdgeInsets.all(isMobile ? 16.0 : 48.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Logo at the top
           Center(
             child: Container(
-              width: 100,
-              height: 100,
+              width: isMobile ? 90 : 100,
+              height: isMobile ? 90 : 100,
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -2436,144 +2437,210 @@ class WhoWeAreTab extends StatelessWidget {
               child: Image.asset('assets/New_Logo.png', fit: BoxFit.cover),
             ),
           ),
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
           Text(
             'Organizational Structure',
             style: Theme.of(context).textTheme.displayMedium,
           ),
-          const SizedBox(height: 48),
+          const SizedBox(height: 24),
 
-          // Tree Structure
-          Center(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(
-                children: [
-                  _buildTreeLevel(
-                    'Chairperson',
-                    'Dejen Kuma(PhD)',
-                    Icons.person_rounded,
-                    isRoot: false,
-                  ),
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    width: 1032,
-                    height: 250,
-                    child: Stack(
+          if (isMobile)
+            Column(
+              children: [
+                _buildTreeLevel(
+                  'Chairperson',
+                  'Dejen Kuma(PhD)',
+                  Icons.person_rounded,
+                  isRoot: false,
+                  width: double.infinity,
+                ),
+                const SizedBox(height: 16),
+                _buildTreeLevel(
+                  'Vice Chairperson',
+                  'Yasin Tufa',
+                  Icons.person_outline_rounded,
+                  width: double.infinity,
+                ),
+                const SizedBox(height: 16),
+                _buildTreeBranchWithRightChild(
+                  title: 'Operational and Admin Lead',
+                  subtitle: 'Dr.Tefaye Megersa',
+                  icon: Icons.admin_panel_settings_rounded,
+                  childTitle: 'Operational Support',
+                  childSubtitle: '',
+                  childIcon: Icons.support_agent_rounded,
+                  showChildDivider: false,
+                  customChildContent: _buildIndividualBulletList([
+                    'Bizuayehu Chala',
+                    'Cheru Fano',
+                  ]),
+                ),
+                const SizedBox(height: 16),
+                _buildTreeBranchWithRightChild(
+                  title: 'Treasurer',
+                  subtitle: 'Dereje Tilahun',
+                  icon: Icons.account_balance_wallet_rounded,
+                  childTitle: 'Treasurer Support',
+                  childSubtitle: 'Faruk Teshale',
+                  childIcon: Icons.payments_rounded,
+                ),
+                const SizedBox(height: 16),
+                _buildTreeBranchWithRightChild(
+                  title: 'Secretary and PR lead',
+                  subtitle: 'Abdulkadir Kaltiso',
+                  icon: Icons.edit_note_rounded,
+                  childTitle: 'Secretary and PR support',
+                  childSubtitle: 'Beshir Edao',
+                  childIcon: Icons.support_agent_rounded,
+                ),
+                const SizedBox(height: 16),
+                _buildTreeBranchWithRightChild(
+                  title: 'Legal Lead',
+                  subtitle: 'Habib Amano',
+                  icon: Icons.gavel_rounded,
+                  childTitle: 'Legal subcommittee',
+                  childSubtitle: '',
+                  childIcon: Icons.balance_rounded,
+                  showChildDivider: false,
+                  customChildContent: _buildIndividualBulletList([
+                    'Asrat Abdo',
+                    'Fitsum Husen',
+                    'Mohammed Hayato',
+                  ]),
+                ),
+              ],
+            )
+          else
+            Center(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Column(
+                  children: [
+                    _buildTreeLevel(
+                      'Chairperson',
+                      'Dejen Kuma(PhD)',
+                      Icons.person_rounded,
+                      isRoot: false,
+                    ),
+                    const SizedBox(height: 8),
+                    SizedBox(
+                      width: 1032,
+                      height: 250,
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            left: 264,
+                            top: 44,
+                            child: _buildTreeLevel(
+                              'Vice Chairperson',
+                              'Yasin Tufa',
+                              Icons.person_outline_rounded,
+                              width: 230,
+                            ),
+                          ),
+                          Positioned(
+                            left: 516,
+                            top: 0,
+                            child: _buildVerticalLine(height: 230),
+                          ),
+                          Positioned(
+                            left: 494,
+                            top: 134,
+                            child: Container(
+                              width: 22,
+                              height: 2,
+                              color: const Color(0xFF2E7D32),
+                            ),
+                          ),
+                          Positioned(
+                            left: 120,
+                            top: 230,
+                            child: Container(
+                              width: 792,
+                              height: 2,
+                              color: const Color(0xFF2E7D32),
+                            ),
+                          ),
+                          Positioned(
+                            left: 120,
+                            top: 230,
+                            child: _buildVerticalLine(height: 20),
+                          ),
+                          Positioned(
+                            left: 384,
+                            top: 230,
+                            child: _buildVerticalLine(height: 20),
+                          ),
+                          Positioned(
+                            left: 648,
+                            top: 230,
+                            child: _buildVerticalLine(height: 20),
+                          ),
+                          Positioned(
+                            left: 912,
+                            top: 230,
+                            child: _buildVerticalLine(height: 20),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Positioned(
-                          left: 264,
-                          top: 44,
-                          child: _buildTreeLevel(
-                            'Vice Chairperson',
-                            'Yasin Tufa',
-                            Icons.person_outline_rounded,
-                            width: 230,
-                          ),
+                        _buildTreeBranchWithRightChild(
+                          title: 'Operational and Admin Lead',
+                          subtitle: 'Dr.Tefaye Megersa',
+                          icon: Icons.admin_panel_settings_rounded,
+                          childTitle: 'Operational Support',
+                          childSubtitle: '',
+                          childIcon: Icons.support_agent_rounded,
+                          showChildDivider: false,
+                          customChildContent: _buildIndividualBulletList([
+                            'Bizuayehu Chala',
+                            'Cheru Fano',
+                          ]),
                         ),
-                        Positioned(
-                          left: 516,
-                          top: 0,
-                          child: _buildVerticalLine(height: 230),
+                        const SizedBox(width: 24),
+                        _buildTreeBranchWithRightChild(
+                          title: 'Treasurer',
+                          subtitle: 'Dereje Tilahun',
+                          icon: Icons.account_balance_wallet_rounded,
+                          childTitle: 'Treasurer Support',
+                          childSubtitle: 'Faruk Teshale',
+                          childIcon: Icons.payments_rounded,
                         ),
-                        Positioned(
-                          left: 494,
-                          top: 134,
-                          child: Container(
-                            width: 22,
-                            height: 2,
-                            color: const Color(0xFF2E7D32),
-                          ),
+                        const SizedBox(width: 24),
+                        _buildTreeBranchWithRightChild(
+                          title: 'Secretary and PR lead',
+                          subtitle: 'Abdulkadir Kaltiso',
+                          icon: Icons.edit_note_rounded,
+                          childTitle: 'Secretary and PR support',
+                          childSubtitle: 'Beshir Edao',
+                          childIcon: Icons.support_agent_rounded,
                         ),
-                        Positioned(
-                          left: 120,
-                          top: 230,
-                          child: Container(
-                            width: 792,
-                            height: 2,
-                            color: const Color(0xFF2E7D32),
-                          ),
-                        ),
-                        Positioned(
-                          left: 120,
-                          top: 230,
-                          child: _buildVerticalLine(height: 20),
-                        ),
-                        Positioned(
-                          left: 384,
-                          top: 230,
-                          child: _buildVerticalLine(height: 20),
-                        ),
-                        Positioned(
-                          left: 648,
-                          top: 230,
-                          child: _buildVerticalLine(height: 20),
-                        ),
-                        Positioned(
-                          left: 912,
-                          top: 230,
-                          child: _buildVerticalLine(height: 20),
+                        const SizedBox(width: 24),
+                        _buildTreeBranchWithRightChild(
+                          title: 'Legal Lead',
+                          subtitle: 'Habib Amano',
+                          icon: Icons.gavel_rounded,
+                          childTitle: 'Legal subcommittee',
+                          childSubtitle: '',
+                          childIcon: Icons.balance_rounded,
+                          showChildDivider: false,
+                          customChildContent: _buildIndividualBulletList([
+                            'Asrat Abdo',
+                            'Fitsum Husen',
+                            'Mohammed Hayato',
+                          ]),
                         ),
                       ],
                     ),
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildTreeBranchWithRightChild(
-                        title: 'Operational and Admin Lead',
-                        subtitle: 'Dr.Tefaye Megersa',
-                        icon: Icons.admin_panel_settings_rounded,
-                        childTitle: 'Operational Support',
-                        childSubtitle: '',
-                        childIcon: Icons.support_agent_rounded,
-                        showChildDivider: false,
-                        customChildContent: _buildIndividualBulletList([
-                          'Bizuayehu Chala',
-                          'Cheru Fano',
-                        ]),
-                      ),
-                      const SizedBox(width: 24),
-                      _buildTreeBranchWithRightChild(
-                        title: 'Treasurer',
-                        subtitle: 'Dereje Tilahun',
-                        icon: Icons.account_balance_wallet_rounded,
-                        childTitle: 'Treasurer Support',
-                        childSubtitle: 'Faruk Teshale',
-                        childIcon: Icons.payments_rounded,
-                      ),
-                      const SizedBox(width: 24),
-                      _buildTreeBranchWithRightChild(
-                        title: 'Secretary and PR lead',
-                        subtitle: 'Abdulkadir Kaltiso',
-                        icon: Icons.edit_note_rounded,
-                        childTitle: 'Secretary and PR support',
-                        childSubtitle: 'Beshir Edao',
-                        childIcon: Icons.support_agent_rounded,
-                      ),
-                      const SizedBox(width: 24),
-                      _buildTreeBranchWithRightChild(
-                        title: 'Legal Lead',
-                        subtitle: 'Habib Amano',
-                        icon: Icons.gavel_rounded,
-                        childTitle: 'Legal subcommittee',
-                        childSubtitle: '',
-                        childIcon: Icons.balance_rounded,
-                        showChildDivider: false,
-                        customChildContent: _buildIndividualBulletList([
-                          'Asrat Abdo',
-                          'Fitsum Husen',
-                          'Mohammed Hayato',
-                        ]),
-                      ),
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
 
-          const SizedBox(height: 64),
+          const SizedBox(height: 48),
           Text(
             'Authority & Governance',
             style: Theme.of(context).textTheme.displayMedium,
@@ -2769,7 +2836,7 @@ class WhatWeDoTab extends StatelessWidget {
           Text('Mission', style: Theme.of(context).textTheme.displayMedium),
           const SizedBox(height: 16),
           const Text(
-            'Ardaita and its Surrounding Charittable Association is a charitable organization committed to improving the quality of life in our community by:',
+            'Ardaita and Surrounding Charity Association is a charitable organization committed to improving the quality of life in our community by:',
             style: TextStyle(fontSize: 18, height: 1.6),
           ),
           const SizedBox(height: 24),
@@ -3842,135 +3909,126 @@ class _ContactUsPageState extends State<ContactUsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 700;
+
+    final formSection = Container(
+      padding: EdgeInsets.all(isMobile ? 20 : 32),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.green.shade100),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (_feedbackMessage != null) ...[
+            _buildFeedbackBanner(
+              _feedbackMessage!,
+              success: _submissionSucceeded,
+            ),
+            const SizedBox(height: 24),
+          ],
+          const Text(
+            'Send us a message',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 24),
+          Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextFormField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    labelText: 'Full Name',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) =>
+                      FormValidators.minLength(value, 'Full name', 2),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                    labelText: 'Email Address',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: FormValidators.email,
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: _messageController,
+                  maxLines: 4,
+                  decoration: const InputDecoration(
+                    labelText: 'Message',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) =>
+                      FormValidators.minLength(value, 'Message', 10),
+                ),
+                const SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: _isSubmitting ? null : _submit,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF2E7D32),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 32,
+                      vertical: 16,
+                    ),
+                  ),
+                  child: Text(
+                    _isSubmitting ? 'Submitting...' : 'Submit Message',
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+
+    final contactInfo = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildContactMethod(
+          Icons.location_on_rounded,
+          'Our Head Office',
+          'Addis Ababa, Ethiopia',
+        ),
+        const SizedBox(height: 24),
+        _buildContactMethod(
+          Icons.email_rounded,
+          'Email Us',
+          'info@ardaita-asca.org',
+        ),
+        const SizedBox(height: 24),
+        _buildContactMethod(Icons.phone_rounded, 'Call Us', '+251 911 123 000'),
+      ],
+    );
+
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(48.0),
+      padding: EdgeInsets.all(isMobile ? 16.0 : 48.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Contact Us', style: Theme.of(context).textTheme.displayMedium),
-          const SizedBox(height: 32),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildContactMethod(
-                      Icons.location_on_rounded,
-                      'Our Head Office',
-                      'Addis Ababa, Ethiopia',
-                    ),
-                    const SizedBox(height: 24),
-                    _buildContactMethod(
-                      Icons.email_rounded,
-                      'Email Us',
-                      'info@ardaitaunity.org',
-                    ),
-                    const SizedBox(height: 24),
-                    _buildContactMethod(
-                      Icons.phone_rounded,
-                      'Call Us',
-                      '+251 911 123 000',
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 48),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  padding: const EdgeInsets.all(32),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.green.shade100),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (_feedbackMessage != null) ...[
-                        _buildFeedbackBanner(
-                          _feedbackMessage!,
-                          success: _submissionSucceeded,
-                        ),
-                        const SizedBox(height: 24),
-                      ],
-                      const Text(
-                        'Send us a message',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 24),
-                      Form(
-                        key: _formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextFormField(
-                              controller: _nameController,
-                              decoration: const InputDecoration(
-                                labelText: 'Full Name',
-                                border: OutlineInputBorder(),
-                              ),
-                              validator: (value) => FormValidators.minLength(
-                                value,
-                                'Full name',
-                                2,
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            TextFormField(
-                              controller: _emailController,
-                              decoration: const InputDecoration(
-                                labelText: 'Email Address',
-                                border: OutlineInputBorder(),
-                              ),
-                              validator: FormValidators.email,
-                            ),
-                            const SizedBox(height: 16),
-                            TextFormField(
-                              controller: _messageController,
-                              maxLines: 4,
-                              decoration: const InputDecoration(
-                                labelText: 'Message',
-                                border: OutlineInputBorder(),
-                              ),
-                              validator: (value) => FormValidators.minLength(
-                                value,
-                                'Message',
-                                10,
-                              ),
-                            ),
-                            const SizedBox(height: 24),
-                            ElevatedButton(
-                              onPressed: _isSubmitting ? null : _submit,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF2E7D32),
-                                foregroundColor: Colors.white,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 32,
-                                  vertical: 16,
-                                ),
-                              ),
-                              child: Text(
-                                _isSubmitting
-                                    ? 'Submitting...'
-                                    : 'Submit Message',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+          const SizedBox(height: 24),
+          if (isMobile)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [formSection, const SizedBox(height: 24), contactInfo],
+            )
+          else
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(flex: 1, child: contactInfo),
+                const SizedBox(width: 48),
+                Expanded(flex: 1, child: formSection),
+              ],
+            ),
         ],
       ),
     );
@@ -4062,7 +4120,7 @@ class DonatePage extends StatelessWidget {
             child: const Column(
               children: [
                 Text(
-                  'Account Name: Ardaita and its Surrounding Charittable Association',
+                  'Account Name: Ardaita and Surrounding Charity Association',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
@@ -4267,8 +4325,10 @@ class _BecomeVolunteerPageState extends State<BecomeVolunteerPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 700;
+
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(48.0),
+      padding: EdgeInsets.all(isMobile ? 16.0 : 48.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -4276,9 +4336,10 @@ class _BecomeVolunteerPageState extends State<BecomeVolunteerPage> {
             'Become a Volunteer',
             style: Theme.of(context).textTheme.displayMedium,
           ),
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
           Container(
-            padding: const EdgeInsets.all(32),
+            width: double.infinity,
+            padding: EdgeInsets.all(isMobile ? 20 : 32),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
@@ -4355,20 +4416,23 @@ class _BecomeVolunteerPageState extends State<BecomeVolunteerPage> {
                             FormValidators.minLength(value, 'Motivation', 10),
                       ),
                       const SizedBox(height: 24),
-                      ElevatedButton(
-                        onPressed: _isSubmitting ? null : _submit,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF2E7D32),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 32,
-                            vertical: 16,
+                      SizedBox(
+                        width: isMobile ? double.infinity : null,
+                        child: ElevatedButton(
+                          onPressed: _isSubmitting ? null : _submit,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF2E7D32),
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 32,
+                              vertical: 16,
+                            ),
                           ),
-                        ),
-                        child: Text(
-                          _isSubmitting
-                              ? 'Submitting...'
-                              : 'Submit Application',
+                          child: Text(
+                            _isSubmitting
+                                ? 'Submitting...'
+                                : 'Submit Application',
+                          ),
                         ),
                       ),
                     ],
