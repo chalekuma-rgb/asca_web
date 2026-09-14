@@ -1017,7 +1017,7 @@ class MyTrendingWebApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ardaita and surrounding charity association',
+      title: 'Ardaita and surrounding charity association',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -1367,7 +1367,7 @@ class _MainLayoutState extends State<MainLayout> {
                   const SizedBox(width: 12),
                   const Expanded(
                     child: Text(
-                      'ardaita and surrounding charity association',
+                      'Ardaita and surrounding charity association',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -1530,7 +1530,7 @@ class _MainLayoutState extends State<MainLayout> {
                 ),
                 if (!isMobile) ...[
                   const SizedBox(width: 10),
-                  const Text('ardaita and surrounding charity association'),
+                  const Text('Ardaita and surrounding charity association'),
                 ],
               ],
             ),
@@ -2130,19 +2130,14 @@ class HomePage extends StatelessWidget {
               runSpacing: 40,
               alignment: WrapAlignment.center,
               children: [
-                _buildStatItem(
-                  context,
-                  Icons.people,
-                  '1000+',
-                  'Lives Impacted',
-                ),
+                _buildStatItem(context, Icons.people, '100+', 'Lives Impacted'),
                 _buildStatItem(
                   context,
                   Icons.school,
-                  '20+',
+                  '10+',
                   'Education Programs',
                 ),
-                _buildStatItem(context, Icons.eco, '100+', 'Green Initiatives'),
+                _buildStatItem(context, Icons.eco, '200+', 'Green Initiatives'),
                 _buildStatItem(
                   context,
                   Icons.trending_up,
@@ -2166,7 +2161,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 24),
                 const MaxWidthContainer(
                   child: Text(
-                    'ardaita and surrounding charity association is a community-driven organization dedicated to fostering sustainable progress, equitable education, and accessible healthcare in the Ardaita region.',
+                    'Ardaita and surrounding charity association is a community-driven organization dedicated to fostering sustainable progress, equitable education, and accessible healthcare in the Ardaita region.',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 18, height: 1.6),
                   ),
@@ -2245,7 +2240,7 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'ardaita and surrounding charity association',
+                          'Ardaita and surrounding charity association',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -2262,7 +2257,7 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  '© 2026 ardaita and surrounding charity association. All rights reserved.',
+                  '© 2026 Ardaita and surrounding charity association. All rights reserved.',
                   style: TextStyle(color: Colors.white70),
                 ),
                 const SizedBox(height: 8),
@@ -2836,7 +2831,7 @@ class WhatWeDoTab extends StatelessWidget {
           Text('Mission', style: Theme.of(context).textTheme.displayMedium),
           const SizedBox(height: 16),
           const Text(
-            'ardaita and surrounding association is a charitable organization committed to improving the quality of life in our community by:',
+            'Ardaita and surrounding charity association is a charitable organization committed to improving the quality of life in our community by:',
             style: TextStyle(fontSize: 18, height: 1.6),
           ),
           const SizedBox(height: 24),
@@ -4120,7 +4115,7 @@ class DonatePage extends StatelessWidget {
             child: const Column(
               children: [
                 Text(
-                  'Account Name: ardaita and surrounding charity association',
+                  'Account Name: Ardaita and surrounding charity association',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
