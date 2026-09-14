@@ -1017,7 +1017,7 @@ class MyTrendingWebApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ardaita and Surrounding Charity Association',
+      title: 'ardaita and surrounding association',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -1367,7 +1367,7 @@ class _MainLayoutState extends State<MainLayout> {
                   const SizedBox(width: 12),
                   const Expanded(
                     child: Text(
-                      'Ardaita and Surrounding Charity Association',
+                      'ardaita and surrounding association',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -1530,7 +1530,7 @@ class _MainLayoutState extends State<MainLayout> {
                 ),
                 if (!isMobile) ...[
                   const SizedBox(width: 10),
-                  const Text('Ardaita and Surrounding Charity Association'),
+                  const Text('ardaita and surrounding association'),
                 ],
               ],
             ),
@@ -2035,7 +2035,7 @@ class HomePage extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 56,
+                            fontSize: 32,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -2166,7 +2166,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 24),
                 const MaxWidthContainer(
                   child: Text(
-                    'Ardaita and Surrounding Charity Association is a community-driven organization dedicated to fostering sustainable progress, equitable education, and accessible healthcare in the Ardaita region.',
+                    'ardaita and surrounding association is a community-driven organization dedicated to fostering sustainable progress, equitable education, and accessible healthcare in the Ardaita region.',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 18, height: 1.6),
                   ),
@@ -2245,7 +2245,7 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Ardaita and Surrounding Charity Association',
+                          'ardaita and surrounding association',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -2262,7 +2262,7 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  '© 2026 Ardaita and Surrounding Charity Association. All rights reserved.',
+                  '© 2026 ardaita and surrounding association. All rights reserved.',
                   style: TextStyle(color: Colors.white70),
                 ),
                 const SizedBox(height: 8),
@@ -2836,7 +2836,7 @@ class WhatWeDoTab extends StatelessWidget {
           Text('Mission', style: Theme.of(context).textTheme.displayMedium),
           const SizedBox(height: 16),
           const Text(
-            'Ardaita and Surrounding Charity Association is a charitable organization committed to improving the quality of life in our community by:',
+            'ardaita and surrounding association is a charitable organization committed to improving the quality of life in our community by:',
             style: TextStyle(fontSize: 18, height: 1.6),
           ),
           const SizedBox(height: 24),
@@ -4120,7 +4120,7 @@ class DonatePage extends StatelessWidget {
             child: const Column(
               children: [
                 Text(
-                  'Account Name: Ardaita and Surrounding Charity Association',
+                  'Account Name: ardaita and surrounding association',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20,
