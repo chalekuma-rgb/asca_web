@@ -1368,8 +1368,10 @@ class _MainLayoutState extends State<MainLayout> {
                   const Expanded(
                     child: Text(
                       'Ardaita and surrounding charity association',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF2E7D32),
                       ),
@@ -3000,12 +3002,9 @@ class InitiativesTab extends StatelessWidget {
             child: Container(
               width: 100,
               height: 100,
+              clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                image: const DecorationImage(
-                  image: AssetImage('assets/New_Logo.png'),
-                  fit: BoxFit.cover,
-                ),
+                shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.2),
@@ -3018,6 +3017,7 @@ class InitiativesTab extends StatelessWidget {
                   width: 2,
                 ),
               ),
+              child: Image.asset('assets/New_Logo.png', fit: BoxFit.cover),
             ),
           ),
           const SizedBox(height: 32),
@@ -4113,6 +4113,7 @@ class DonatePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
+                width: double.infinity,
                 constraints: const BoxConstraints(maxWidth: 560),
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
@@ -4139,35 +4140,6 @@ class DonatePage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF2E7D32),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(width: isMobile ? 0 : 24, height: isMobile ? 24 : 0),
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: Colors.green.shade200),
-                ),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Scan to donate',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF2E7D32),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Image.asset(
-                      'assets/donation_qr.png',
-                      width: isMobile ? 180 : 210,
-                      height: isMobile ? 180 : 210,
-                      fit: BoxFit.contain,
-                      semanticLabel: 'Donation QR code',
                     ),
                   ],
                 ),
